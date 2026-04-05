@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EventPulse — Bayesian Social Trend Predictor</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="ambient ambient-1"></div>
+<div class="ambient ambient-2"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">
+    <div class="logo-icon">⚡</div>
+    <div>
+      EventPulse
+      <div class="logo-sub">Bayesian Social Predictor</div>
+    </div>
+  </div>
+  <div class="nav-right">
+    <span class="badge badge-live">MODEL ACTIVE</span>
+    <span class="badge">v2.1 · GaussianNB</span>
+  </div>
+</nav>
+
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-tag">Predictive Intelligence</div>
+    <h1>Will your event go <span>viral</span>?</h1>
+    <p class="hero-desc">Real-time Bayesian inference on social signal velocity. Enter your event's engagement metrics and we'll tell you if it's going to trend — before it does.</p>
+  </div>
+
+  <!-- INPUT PANEL -->
+  <div class="panel">
+    <div class="panel-header">
+      <span class="panel-title">Signal Input</span>
+      <span class="badge">4 parameters</span>
+    </div>
+    <div class="panel-body">
+
+      <div class="input-group">
+        <label>Tweet Count</label>
+        <div class="input-wrapper">
+          <span class="input-icon">🐦</span>
+          <input type="number" id="tweet_count" placeholder="e.g. 80" min="0">
+        </div>
+        <div class="input-hint">Total number of tweets in the event window</div>
+      </div>
+
+      <div class="input-group">
+        <label>Unique Users</label>
+        <div class="input-wrapper">
+          <span class="input-icon">👥</span>
+          <input type="number" id="unique_users" placeholder="e.g. 50" min="0">
+        </div>
+        <div class="input-hint">Distinct accounts participating</div>
+      </div>
+
+      <div class="input-group">
+        <label>Retweet Sum</label>
+        <div class="input-wrapper">
+          <span class="input-icon">🔁</span>
+          <input type="number" id="retweet_sum" placeholder="e.g. 1200" min="0">
+        </div>
+        <div class="input-hint">Aggregate retweets across all tweets</div>
+      </div>
+
+      <div class="input-group">
+        <label>Time Span (seconds)</label>
+        <div class="input-wrapper">
+          <span class="input-icon">⏱</span>
+          <input type="number" id="time_span" placeholder="e.g. 300" min="0">
+        </div>
+        <div class="input-hint">Event observation window duration</div>
+      </div>
+
+      <div class="action-row">
+        <button class="btn-predict" onclick="predict()" id="predict-btn">
+          Run Prediction
+        </button>
+        <button class="btn-reset" type="button" onclick="resetPrediction()" id="reset-btn">
+          Reset
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT COLUMN -->
+  <div class="right-col">
+
+    <!-- RESULT CARD -->
+    <div class="result-card" id="result-card">
+      <div class="result-empty" id="result-empty">
+        <div class="result-empty-icon">◎</div>
+        <div class="result-empty-text">Awaiting signal data...<br>Fill in the parameters and run prediction.</div>
+      </div>
+      <div class="result-content" id="result-content">
+        <div class="verdict">
+          <div class="verdict-badge" id="verdict-badge">—</div>
+          <div class="verdict-text" id="verdict-text">—</div>
+        </div>
+
+        <div class="prob-section">
+          <div class="prob-label">
+            <span class="prob-key">Confidence</span>
+            <span class="prob-val" id="prob-val">—</span>
+          </div>
+          <div class="prob-track">
+            <div class="prob-fill" id="prob-fill"></div>
+          </div>
+        </div>
+
+        <div class="tags" id="tags-container"></div>
+        <div id="error-container"></div>
+      </div>
+    </div>
+
+    <!-- FEATURE IMPORTANCE PANEL -->
+    <div class="fi-panel" id="fi-panel" style="display:none;">
+      <div class="panel-header">
+        <span class="panel-title">Feature Importance</span>
+        <span class="badge">Heuristic weights</span>
+      </div>
+      <div id="fi-rows"></div>
+    </div>
+
+  </div>
+
+</main>
+
+<footer>
+  EventPulse · Predicting Popular Events in Advance Through Bayesian Model for Social Networks · <span style="color: var(--accent)">GaussianNB</span>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
